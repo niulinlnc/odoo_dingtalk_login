@@ -63,19 +63,6 @@ class Users(models.Model):
     phone_number = fields.Char(u'手机号')
     ding_unionid = fields.Char(u'钉钉号')
     loginwithpw = fields.Boolean(u'是否具有账密登录权限')
-    now_warehouse = fields.Many2one('stock.warehouse', string=u'当前仓库')
-
-    team_ids = fields.Many2many(
-        comodel_name='crm.team',
-        relation='crm_team_res_users_rel',
-        column1='user_id',
-        column2='team_id',
-        string=u'所属团队'
-    )
-
-    warehouse_ids = fields.Many2many('stock.warehouse', 'res_users_warehouse_ref', 'warehouse_team_id',
-                                     'warehouse_team2_id',
-                                     u'仓库')
 
     @api.multi
     def _set_encrypted_password(self, encrypted):
